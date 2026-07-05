@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+  ARTICLE PAGE TEMPLATE
+  ======================
+  Use this for a single piece of content — a note, guide, or write-up that
+  lives inside a category (e.g. parenting/on-parenting.html).
+
+  How to use:
+   1. Copy this file into the right category folder, named like the topic
+      (lowercase, hyphens — e.g. "on-parenting.html").
+   2. Replace every [BRACKETED] placeholder.
+   3. Write the body using the existing tags (h2/h3/p/ul/blockquote/.callout) —
+      the stylesheet handles all the spacing and typography.
+   4. Set data-page and data-crumbs on <body> to match this file's real path.
+   5. Add this page to its category's hub (index.html) card grid, and to the
+      matching "children" array in NAV_CONFIG in assets/js/nav.js.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Article Title] — Yaniv Efraim</title>
+  <meta name="description" content="[One-sentence summary for search/previews.]" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body
+  data-depth="1"
+  data-page="[category-folder]/[article-file-name].html"
+  data-crumbs='[{"label":"[Category Name]","href":"[category-folder]/index.html"},{"label":"[Article Title]"}]'
+>
+
+  <div id="site-header"></div>
+
+  <header class="article-header">
+    <div class="wrap">
+      <p class="eyebrow">[Category Name]</p>
+      <h1>[Article Title]</h1>
+      <div class="article-meta">
+        <span>Last updated [DD Month YYYY]</span>
+        <div class="tag-list">
+          <span class="tag">[tag-one]</span>
+          <span class="tag">[tag-two]</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <article class="article-body">
+
+    <p>[Opening paragraph — one or two sentences framing what this page is and why it exists.]</p>
+
+    <h2>[First subheading]</h2>
+    <p>[Body text.]</p>
+
+    <div class="callout">
+      <strong>Note:</strong> [Use this box for a key takeaway, definition, or reminder you want to notice at a glance.]
+    </div>
+
+    <h2>[Second subheading]</h2>
+    <p>[Body text.]</p>
+    <ul>
+      <li>[Point one]</li>
+      <li>[Point two]</li>
+      <li>[Point three]</li>
+    </ul>
+
+    <blockquote>[Optional quote or personal note set apart from the main text.]</blockquote>
+
+  </article>
+
+  <footer class="article-footer">
+    <div class="wrap">
+      <p class="related-title">Related in [Category Name]</p>
+      <ul class="list-links">
+        <li><a href="[sibling-article].html">[Sibling Article Title] <span class="meta">[Tag]</span></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <footer class="site-footer">
+    <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+      <span>Yaniv Efraim — personal knowledge base, for my own reference.</span>
+      <span>Last reviewed: [DD Month YYYY]</span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+  NAV / HUB PAGE TEMPLATE
+  =======================
+  Use this for a category "hub" page — a page whose job is to introduce a
+  topic and link out to its child articles (e.g. personal-development/index.html).
+
+  How to use:
+   1. Copy this file into the category folder as index.html.
+   2. Replace every [BRACKETED] placeholder.
+   3. Add one <a class="card"> per child page (copy the block, it's marked below).
+   4. Set data-page and data-crumbs on <body> to match this file's real path.
+   5. Add the matching entry (with "children") to NAV_CONFIG in assets/js/nav.js
+      so this hub and its children show up in the nested nav bar.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[Category Name] — Yaniv Efraim</title>
+  <meta name="description" content="[One-sentence description of this category.]" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Path depth: this file lives one folder below the site root, hence "../" -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body
+  data-depth="1"
+  data-page="[category-folder]/index.html"
+  data-crumbs='[{"label":"[Category Name]"}]'
+>
+
+  <div id="site-header"></div>
+
+  <header class="hero" style="padding: 44px 0 36px;">
+    <div class="wrap">
+      <p class="eyebrow">[Category Name]</p>
+      <h1>[Short, human headline for this category]</h1>
+      <p class="lede">[Two or three sentences: what this category covers and why it matters to you. Written for your future self skimming the KB.]</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Pages in this section</h2>
+        <span class="muted">[N] pages</span>
+      </div>
+
+      <div class="card-grid">
+
+        <!-- CHILD PAGE CARD — duplicate this block for each article in this category -->
+        <a class="card" href="[article-file-name].html">
+          <span class="card-icon">📄</span>
+          <h3>[Article Title]</h3>
+          <p>[One-sentence summary of the article.]</p>
+          <span class="card-tag">[Tag, e.g. "Guide" / "Notes" / "Draft"]</span>
+        </a>
+        <!-- END CHILD PAGE CARD -->
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+      <span>Yaniv Efraim — personal knowledge base, for my own reference.</span>
+      <span>Last reviewed: [DD Month YYYY]</span>
+    </div>
+  </footer>
+
+  <script src="../assets/js/nav.js"></script>
+</body>
+</html>
