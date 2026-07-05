@@ -1,136 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yaniv Efraim — Personal Knowledge Base</title>
-  <meta name="description" content="Yaniv Efraim's personal knowledge base: notes on personal development, parenting, business systems, and the SOL retreat." />
+  <title>יניב אפרים — מאגר ידע אישי</title>
+  <meta name="description" content="מאגר הידע האישי של יניב אפרים: פיתוח אישי, עסקים ועבודה, הורות, תקשורת, כספים והנהלת חשבונות." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;600;700&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body data-depth="0" data-page="index.html">
 
-  <div id="site-header"></div>
+  <div id="mobile-topbar" class="mobile-topbar"></div>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-  <header class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Personal Knowledge Base</p>
-      <h1>Notes on a life spent building, raising, and exploring.</h1>
-      <p class="lede">
-        I'm Yaniv Efraim — full of love, happy in my part, and endlessly curious about the world and the truth.
-        This is where I keep the ideas I return to: how I think about personal growth, how I try to parent,
-        the systems I've built, and the retreat I'm building next. It's written for myself, and shared with
-        anyone who finds it useful.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="about/index.html">About Me</a>
-        <a class="btn btn-ghost" href="personal-development/index.html">Start with Personal Development</a>
-      </div>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <div class="app-main">
+
+      <header class="hero">
+        <div class="wrap">
+          <p class="eyebrow">מאגר ידע אישי</p>
+          <h1>הערות מחיים שמוקדשים לבנייה, גידול וחקירה</h1>
+          <p class="lede">
+            אני יניב אפרים — מלא אהבה, שמח בחלקי, וסקרן ללא הפסקה לגבי העולם והאמת.
+            כאן אני שומר את הרעיונות שאני חוזר אליהם: איך אני חושב על פיתוח אישי,
+            איך אני מנהל עסקים ומערכות, איך אני מנסה להורות, ואיך אני מתקשר עם
+            העולם. זה נכתב עבור עצמי, ומשותף עם כל מי שמוצא בזה תועלת.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://yanivefraim.com" target="_blank" rel="noopener">בקרו באתר שלי</a>
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>גלו את מאגר הידע</h2>
+            <span class="muted">שישה תחומים שאני חוזר אליהם</span>
+          </div>
+          <div class="card-grid">
+
+            <a class="card" href="personal-development/index.html">
+              <span class="card-icon">🌱</span>
+              <h3>פיתוח אישי</h3>
+              <p>השקפת עולם, פילוסופיה, והרעיונות שמאחורי "ספר החיים" — על מה אני מאמין שצמיחה באמת בנויה.</p>
+            </a>
+
+            <a class="card" href="business-and-work/index.html">
+              <span class="card-icon">⚙️</span>
+              <h3>עסקים ועבודה</h3>
+              <p>SUMIT, בית הספר לחיים, והרצאות וסדנאות — המערכות והפרויקטים שאני בונה.</p>
+            </a>
+
+            <a class="card" href="parenting/index.html">
+              <span class="card-icon">👨‍👩‍👧‍👦</span>
+              <h3>הורות</h3>
+              <p>הערות לגידול אריאל, נועם והילי — והמדריכים שאני כותב להורים אחרים.</p>
+            </a>
+
+            <a class="card" href="communication/index.html">
+              <span class="card-icon">💬</span>
+              <h3>תקשורת</h3>
+              <p>איך לתקשר מתוך קבלה ונוכחות, ולא מתוך פחד או שליטה.</p>
+            </a>
+
+            <a class="card" href="finance/index.html">
+              <span class="card-icon">💰</span>
+              <h3>כספים</h3>
+              <p>מחשבות על כסף, בחירה חופשית, ואיך שני אלה נפגשים.</p>
+            </a>
+
+            <a class="card" href="accounting/index.html">
+              <span class="card-icon">🧾</span>
+              <h3>הנהלת חשבונות</h3>
+              <p>מערכת הנהלת חשבונות שבניתי במיוחד עבור נציגים פיננסיים.</p>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="wrap">
+          <span>יניב אפרים — מאגר ידע אישי, לשימושי הפרטי.</span>
+          <span>עודכן לאחרונה: 5 ביולי 2026</span>
+        </div>
+      </footer>
+
     </div>
-  </header>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Explore the knowledge base</h2>
-        <span class="muted">Six areas I keep coming back to</span>
-      </div>
-      <div class="card-grid">
-
-        <a class="card" href="personal-development/index.html">
-          <span class="card-icon">🌱</span>
-          <h3>Personal Development</h3>
-          <p>Worldview, philosophy, and the ideas behind the "Book of Life" — what I believe growth is actually built on.</p>
-          <span class="card-tag">3 pages</span>
-        </a>
-
-        <a class="card" href="parenting/index.html">
-          <span class="card-icon">👨‍👩‍👧‍👦</span>
-          <h3>Parenting</h3>
-          <p>Notes for raising Ariel, Noam, and Hili — and the guides I'm writing for other parents.</p>
-          <span class="card-tag">3 pages</span>
-        </a>
-
-        <a class="card" href="business-systems/index.html">
-          <span class="card-icon">⚙️</span>
-          <h3>Business & Systems</h3>
-          <p>SUMIT and the other systems I've built to run a business without it running you.</p>
-          <span class="card-tag">2 pages</span>
-        </a>
-
-        <a class="card" href="sol-retreat/index.html">
-          <span class="card-icon">🌾</span>
-          <h3>SOL — Retreat & Community</h3>
-          <p>A modern ashram and retreat center for long-term stays, plus the communities around it.</p>
-          <span class="card-tag">3 pages</span>
-        </a>
-
-        <a class="card" href="lectures-workshops/index.html">
-          <span class="card-icon">🎤</span>
-          <h3>Lectures & Workshops</h3>
-          <p>What I teach, how I teach it, and how to bring a session to your group.</p>
-          <span class="card-tag">1 page</span>
-        </a>
-
-        <a class="card" href="about/index.html">
-          <span class="card-icon">👋</span>
-          <h3>About Me</h3>
-          <p>Family, background, and how entrepreneurship and education brought me here.</p>
-          <span class="card-tag">1 page</span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background: var(--color-bg-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Currently in progress</h2>
-        <span class="muted">What I'm actively building</span>
-      </div>
-      <ul class="list-links">
-        <li>
-          <a href="sol-retreat/school-of-life.html">
-            SOL — a modern ashram and retreat center for long-term stays
-            <span class="meta">Retreat</span>
-          </a>
-        </li>
-        <li>
-          <a href="personal-development/book-of-life.html">
-            Book of Life — mental health, physical health, safety, resistance, connection, knowledge, awareness
-            <span class="meta">Manuscript</span>
-          </a>
-        </li>
-        <li>
-          <a href="parenting/on-parenting.html">
-            On Parenting — a comprehensive guide for parents
-            <span class="meta">Guide</span>
-          </a>
-        </li>
-        <li>
-          <a href="parenting/jewish-questions-book.html">
-            The Jewish Questions Book (ספר השאלות היהודי)
-            <span class="meta">Book</span>
-          </a>
-        </li>
-        <li>
-          <a href="lectures-workshops/index.html">
-            Five books in development, plus ongoing lectures and workshops
-            <span class="meta">Teaching</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
-      <span>Yaniv Efraim — personal knowledge base, for my own reference.</span>
-      <span>Last reviewed: 5 July 2026</span>
-    </div>
-  </footer>
+  </div>
 
   <script src="assets/js/nav.js"></script>
 </body>

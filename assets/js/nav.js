@@ -1,61 +1,36 @@
 /* ==========================================================================
-   Yaniv Efraim — Personal Knowledge Base
-   Site-wide nested navigation engine.
+   יניב אפרים — מאגר ידע אישי
+   מנוע ניווט תפריט צד (Sidebar) לכל האתר.
 
-   Every page includes:
-     <div id="site-header"></div>
+   כל דף כולל:
+     <div id="mobile-topbar"></div>
+     <div id="sidebar-overlay" class="sidebar-overlay"></div>
+     <div class="app-shell">
+       <aside id="sidebar" class="sidebar"></aside>
+       <div class="app-main"> ...תוכן הדף... </div>
+     </div>
      <script src="{prefix}assets/js/nav.js"></script>
-   and sets on <body>:
-     data-depth="N"   number of folders below the site root (root index = 0)
-     data-page="..."  this page's root-relative path, matching a href below
-     data-crumbs='[{"label":"Parenting","href":"parenting/index.html"},{"label":"On Parenting"}]'
-       (optional — omit on the home page; last crumb has no href)
 
-   To add a page to the site: add one entry below (with a "children" array
-   for a nested dropdown, or without one for a flat top-level link), then
-   create the file using templates/nav-page-template.html (hub) or
-   templates/article-page-template.html (article).
+   ועל ה-<body> יש להגדיר:
+     data-depth="N"   כמה תיקיות מתחת לשורש האתר נמצא הדף (השורש = 0)
+     data-page="..."  הנתיב היחסי לשורש של הדף הזה, תואם ל-href למטה
+     data-crumbs='[{"label":"הורות","href":"parenting/index.html"},{"label":"על הורות"}]'
+       (אופציונלי — לא נדרש בדף הבית; לפריט האחרון אין href)
+
+   כדי להוסיף דף חדש: הוסיפו רשומה למטה (עם מערך "children" לתת-תפריט,
+   או בלעדיו לקישור עליון שטוח), ואז צרו את הקובץ לפי
+   templates/nav-page-template.html (עמוד קטגוריה) או
+   templates/article-page-template.html (כתבה).
    ========================================================================== */
 
 const NAV_CONFIG = [
-  { label: "Home", href: "index.html" },
-  { label: "About Me", href: "about/index.html" },
-  {
-    label: "Personal Development",
-    href: "personal-development/index.html",
-    children: [
-      { label: "Worldview & Philosophy", href: "personal-development/worldview-and-philosophy.html" },
-      { label: "Book of Life", href: "personal-development/book-of-life.html" },
-      { label: "Short Insights", href: "personal-development/short-insights.html" },
-    ],
-  },
-  {
-    label: "Parenting",
-    href: "parenting/index.html",
-    children: [
-      { label: "On Parenting", href: "parenting/on-parenting.html" },
-      { label: "Parenting Tips", href: "parenting/parenting-tips.html" },
-      { label: "The Jewish Questions Book", href: "parenting/jewish-questions-book.html" },
-    ],
-  },
-  {
-    label: "Business & Systems",
-    href: "business-systems/index.html",
-    children: [
-      { label: "SUMIT", href: "business-systems/sumit.html" },
-      { label: "Accounting for Representatives", href: "business-systems/accounting-for-representatives.html" },
-    ],
-  },
-  {
-    label: "SOL — Retreat & Community",
-    href: "sol-retreat/index.html",
-    children: [
-      { label: "School of Life (Thailand)", href: "sol-retreat/school-of-life.html" },
-      { label: "Parent Yourself First", href: "sol-retreat/parent-yourself-first.html" },
-      { label: "House of Hugs", href: "sol-retreat/house-of-hugs.html" },
-    ],
-  },
-  { label: "Lectures & Workshops", href: "lectures-workshops/index.html" },
+  { label: "בית", href: "index.html" },
+  { label: "פיתוח אישי", href: "personal-development/index.html" },
+  { label: "עסקים ועבודה", href: "business-and-work/index.html" },
+  { label: "הורות", href: "parenting/index.html" },
+  { label: "תקשורת", href: "communication/index.html" },
+  { label: "כספים", href: "finance/index.html" },
+  { label: "הנהלת חשבונות", href: "accounting/index.html" },
 ];
 
 (function () {
@@ -67,8 +42,7 @@ const NAV_CONFIG = [
   function isActive(href) {
     return href === currentPage;
   }
-
-  function isAncestorActive(item) {
+  function categoryIsActive(item) {
     if (isActive(item.href)) return true;
     if (item.children) return item.children.some((c) => isActive(c.href));
     return false;
@@ -76,19 +50,35 @@ const NAV_CONFIG = [
 
   function renderNavItem(item) {
     const hasChildren = Array.isArray(item.children) && item.children.length > 0;
-    const activeTop = isAncestorActive(item);
+    const active = categoryIsActive(item);
+
     const li = document.createElement("li");
-    li.className = "nav-item" + (activeTop ? " active" : "");
+    li.className = "nav-item" + (active ? " active" : "") + (active && hasChildren ? " open" : "");
+
+    const row = document.createElement("div");
+    row.className = "nav-row";
 
     const link = document.createElement("a");
     link.className = "nav-link";
     link.href = prefix + item.href;
-    link.innerHTML = item.label + (hasChildren ? ' <span class="caret">▾</span>' : "");
-    li.appendChild(link);
+    link.textContent = item.label;
+    row.appendChild(link);
+
+    if (hasChildren) {
+      const caret = document.createElement("button");
+      caret.type = "button";
+      caret.className = "caret-btn";
+      caret.setAttribute("aria-label", "הרחב/כווץ תת-תפריט");
+      caret.innerHTML = "▾";
+      caret.addEventListener("click", () => li.classList.toggle("open"));
+      row.appendChild(caret);
+    }
+
+    li.appendChild(row);
 
     if (hasChildren) {
       const sub = document.createElement("ul");
-      sub.className = "nav-dropdown";
+      sub.className = "nav-children";
       item.children.forEach((child) => {
         const cLi = document.createElement("li");
         const cA = document.createElement("a");
@@ -99,70 +89,41 @@ const NAV_CONFIG = [
         sub.appendChild(cLi);
       });
       li.appendChild(sub);
-
-      // Click/tap toggles the dropdown (covers mobile + keyboard use);
-      // desktop also gets a CSS :hover fallback for quick mouse use.
-      link.addEventListener("click", (e) => {
-        const isMobile = window.matchMedia("(max-width: 760px)").matches;
-        if (isMobile) {
-          e.preventDefault();
-          const wasOpen = li.classList.contains("open");
-          document.querySelectorAll(".nav-item.open").forEach((el) => el.classList.remove("open"));
-          if (!wasOpen) li.classList.add("open");
-        }
-      });
     }
 
     return li;
   }
 
-  function renderHeader() {
-    const host = document.getElementById("site-header");
-    if (!host) return;
-
-    const topbar = document.createElement("div");
-    topbar.className = "site-topbar";
-
-    const inner = document.createElement("div");
-    inner.className = "site-topbar-inner";
+  function renderSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    if (!sidebar) return;
 
     const brand = document.createElement("a");
-    brand.className = "site-brand";
+    brand.className = "sidebar-brand";
     brand.href = prefix + "index.html";
-    brand.style.textDecoration = "none";
-    brand.innerHTML = 'Yaniv Efraim <span>· Knowledge Base</span>';
+    brand.innerHTML = 'יניב אפרים <small>מאגר ידע אישי</small>';
+    sidebar.appendChild(brand);
 
-    const toggle = document.createElement("button");
-    toggle.className = "nav-toggle";
-    toggle.setAttribute("aria-label", "Toggle navigation");
-    toggle.innerHTML = "☰";
+    sidebar.appendChild(document.createElement("hr")).className = "sidebar-divider";
 
     const nav = document.createElement("nav");
-    nav.className = "site-nav";
+    nav.className = "sidebar-nav";
     const ul = document.createElement("ul");
     NAV_CONFIG.forEach((item) => ul.appendChild(renderNavItem(item)));
     nav.appendChild(ul);
+    sidebar.appendChild(nav);
 
-    toggle.addEventListener("click", () => {
-      nav.classList.toggle("mobile-open");
-    });
-
-    inner.appendChild(brand);
-    inner.appendChild(toggle);
-    inner.appendChild(nav);
-    topbar.appendChild(inner);
-    host.appendChild(topbar);
-
-    // Breadcrumb (optional)
+    // Breadcrumb lives above the main content, not in the sidebar itself.
     const crumbsRaw = body.getAttribute("data-crumbs");
-    if (crumbsRaw) {
+    const mainHost = document.querySelector(".app-main");
+    if (crumbsRaw && mainHost) {
       try {
         const crumbs = JSON.parse(crumbsRaw);
         const bc = document.createElement("div");
         bc.className = "breadcrumb";
         const bcWrap = document.createElement("div");
         bcWrap.className = "wrap";
-        const parts = [`<a href="${prefix}index.html">Home</a>`];
+        const parts = [`<a href="${prefix}index.html">בית</a>`];
         crumbs.forEach((c) => {
           parts.push('<span class="sep">/</span>');
           if (c.href) {
@@ -173,20 +134,50 @@ const NAV_CONFIG = [
         });
         bcWrap.innerHTML = parts.join("");
         bc.appendChild(bcWrap);
-        host.appendChild(bc);
+        mainHost.insertBefore(bc, mainHost.firstChild);
       } catch (err) {
-        console.warn("Invalid data-crumbs JSON on page", currentPage, err);
+        console.warn("data-crumbs לא תקין בדף", currentPage, err);
       }
     }
-
-    // Close mobile menu / dropdowns when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!nav.contains(e.target) && !toggle.contains(e.target)) {
-        nav.classList.remove("mobile-open");
-        document.querySelectorAll(".nav-item.open").forEach((el) => el.classList.remove("open"));
-      }
-    });
   }
 
-  renderHeader();
+  function renderMobileChrome() {
+    const topbarHost = document.getElementById("mobile-topbar");
+    const overlay = document.getElementById("sidebar-overlay");
+    const sidebar = document.getElementById("sidebar");
+    if (!topbarHost || !sidebar) return;
+
+    const brand = document.createElement("a");
+    brand.className = "mobile-brand";
+    brand.href = prefix + "index.html";
+    brand.textContent = "יניב אפרים";
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "menu-toggle";
+    toggle.setAttribute("aria-label", "פתח/סגור תפריט");
+    toggle.innerHTML = "☰";
+
+    topbarHost.appendChild(toggle);
+    topbarHost.appendChild(brand);
+
+    function closeDrawer() {
+      sidebar.classList.remove("mobile-open");
+      if (overlay) overlay.classList.remove("show");
+    }
+    function openDrawer() {
+      sidebar.classList.add("mobile-open");
+      if (overlay) overlay.classList.add("show");
+    }
+
+    toggle.addEventListener("click", () => {
+      const isOpen = sidebar.classList.contains("mobile-open");
+      if (isOpen) closeDrawer();
+      else openDrawer();
+    });
+    if (overlay) overlay.addEventListener("click", closeDrawer);
+  }
+
+  renderSidebar();
+  renderMobileChrome();
 })();
