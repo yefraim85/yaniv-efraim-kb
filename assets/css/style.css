@@ -134,6 +134,35 @@ h1, h2, h3, h4 {
   top: 0;
   overflow-y: auto;
   padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 18px;
+}
+.sidebar-bottom-links {
+  list-style: none;
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--color-border);
+}
+.sidebar-bottom-links a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+.sidebar-bottom-links a:hover {
+  background: var(--color-bg-alt);
+  color: var(--color-accent-dark);
+  text-decoration: none;
+}
+.sidebar-bottom-links a.active {
+  color: var(--color-accent-dark);
+  font-weight: 700;
 }
 
 .sidebar-brand {
@@ -444,6 +473,20 @@ h1, h2, h3, h4 {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.footer-utility {
+  display: block;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+.footer-utility a {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+.footer-utility a:hover {
+  color: var(--color-accent-dark);
 }
 
 /* Utility */

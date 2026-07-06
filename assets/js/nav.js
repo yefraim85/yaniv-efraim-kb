@@ -33,6 +33,13 @@ const NAV_CONFIG = [
   { label: "הנהלת חשבונות", href: "accounting/index.html" },
 ];
 
+// קישורים קטנים שצמודים לתחתית סרגל הצד, מתחת לניווט הראשי.
+const SIDEBAR_BOTTOM_LINKS = [
+  { label: "על מאגר הידע", href: "about-kb/index.html" },
+  { label: "על יניב", href: "about-yaniv/index.html" },
+  { label: "בקרוב", href: "tasks/index.html" },
+];
+
 (function () {
   const body = document.body;
   const depth = parseInt(body.getAttribute("data-depth") || "0", 10);
@@ -112,6 +119,22 @@ const NAV_CONFIG = [
     NAV_CONFIG.forEach((item) => ul.appendChild(renderNavItem(item)));
     nav.appendChild(ul);
     sidebar.appendChild(nav);
+
+    const bottom = document.createElement("div");
+    bottom.className = "sidebar-bottom";
+    const bottomUl = document.createElement("ul");
+    bottomUl.className = "sidebar-bottom-links";
+    SIDEBAR_BOTTOM_LINKS.forEach((item) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = prefix + item.href;
+      a.textContent = item.label;
+      if (isActive(item.href)) a.classList.add("active");
+      li.appendChild(a);
+      bottomUl.appendChild(li);
+    });
+    bottom.appendChild(bottomUl);
+    sidebar.appendChild(bottom);
 
     // Breadcrumb lives above the main content, not in the sidebar itself.
     const crumbsRaw = body.getAttribute("data-crumbs");
