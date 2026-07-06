@@ -3,7 +3,28 @@
    גיליון עיצוב משותף (RTL) לכל הדפים
    ========================================================================== */
 
+/* מצב כהה הוא ברירת המחדל; מצב בהיר הוא אופציה שנבחרת דרך הכפתור בסרגל הצד. */
 :root {
+  --color-bg: #1c1815;
+  --color-bg-alt: #262019;
+  --color-surface: #221d18;
+  --color-text: #f1e9dd;
+  --color-text-muted: #a89a8a;
+  --color-border: #3c352c;
+  --color-accent: #e08a5f;
+  --color-accent-dark: #f0a878;
+  --color-accent-soft: #3a2a20;
+
+  --font-serif: 'Frank Ruhl Libre', 'Times New Roman', serif;
+  --font-sans: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
+
+  --sidebar-width: 272px;
+  --max-width: 900px;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="light"] {
   --color-bg: #faf7f2;
   --color-bg-alt: #f1ebe0;
   --color-surface: #ffffff;
@@ -13,13 +34,6 @@
   --color-accent: #a45c40;
   --color-accent-dark: #7c4530;
   --color-accent-soft: #f0e0d3;
-
-  --font-serif: 'Frank Ruhl Libre', 'Times New Roman', serif;
-  --font-sans: 'Assistant', 'Segoe UI', Tahoma, sans-serif;
-
-  --sidebar-width: 272px;
-  --max-width: 900px;
-  --radius: 10px;
   --shadow: 0 1px 3px rgba(43, 38, 32, 0.06), 0 6px 20px rgba(43, 38, 32, 0.05);
 }
 
@@ -35,6 +49,7 @@ body {
   font-size: 17px;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 img { max-width: 100%; }
@@ -186,6 +201,24 @@ h1, h2, h3, h4 {
   border-top: 1px solid var(--color-border);
   margin: 18px 0;
 }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 9px 12px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: var(--color-accent-soft); }
 
 .sidebar-nav ul {
   list-style: none;

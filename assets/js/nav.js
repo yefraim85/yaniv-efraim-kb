@@ -101,6 +101,43 @@ const SIDEBAR_BOTTOM_LINKS = [
     return li;
   }
 
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+  }
+
+  function applyTheme(theme) {
+    if (theme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+    try {
+      localStorage.setItem("kb-theme", theme);
+    } catch (err) {
+      /* localStorage לא זמין — פשוט לא נשמור העדפה */
+    }
+  }
+
+  function renderThemeToggle(sidebar) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "theme-toggle";
+
+    function updateLabel() {
+      const isDark = currentTheme() === "dark";
+      btn.innerHTML = isDark ? "☀️ <span>מצב בהיר</span>" : "🌙 <span>מצב כהה</span>";
+      btn.setAttribute("aria-pressed", String(!isDark));
+    }
+    updateLabel();
+
+    btn.addEventListener("click", () => {
+      applyTheme(currentTheme() === "dark" ? "light" : "dark");
+      updateLabel();
+    });
+
+    sidebar.appendChild(btn);
+  }
+
   function renderSidebar() {
     const sidebar = document.getElementById("sidebar");
     if (!sidebar) return;
@@ -110,6 +147,8 @@ const SIDEBAR_BOTTOM_LINKS = [
     brand.href = prefix + "index.html";
     brand.innerHTML = 'יניב אפרים <small>מאגר ידע אישי</small>';
     sidebar.appendChild(brand);
+
+    renderThemeToggle(sidebar);
 
     sidebar.appendChild(document.createElement("hr")).className = "sidebar-divider";
 
