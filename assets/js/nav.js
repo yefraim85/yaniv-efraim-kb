@@ -25,11 +25,33 @@
 
 const NAV_CONFIG = [
   { label: "בית", href: "index.html" },
-  { label: "פיתוח אישי", href: "personal-development/index.html" },
+  {
+    label: "פיתוח אישי",
+    href: "personal-development/index.html",
+    children: [
+      { label: "ערכים מובילים", href: "personal-development/values.html" },
+    ],
+  },
   { label: "עסקים ועבודה", href: "business-and-work/index.html" },
   { label: "הורות", href: "parenting/index.html" },
   { label: "תקשורת", href: "communication/index.html" },
-  { label: "כספים", href: "finance/index.html" },
+  {
+    label: "סגנון כתיבה",
+    href: "writing-style/index.html",
+    children: [
+      { label: "עקרונות הכתיבה שלי", href: "writing-style/principles.html" },
+      { label: "המבנה שחוזר בכל כתבה", href: "writing-style/structure.html" },
+    ],
+  },
+  {
+    label: "כספים",
+    href: "finance/index.html",
+    children: [
+      { label: "ניהול תקציב", href: "finance/budget-management.html" },
+      { label: "ניהול תזרים", href: "finance/cash-flow-management.html" },
+      { label: "תכנון מול ביצוע", href: "finance/planning-vs-execution.html" },
+    ],
+  },
   { label: "הנהלת חשבונות", href: "accounting/index.html" },
 ];
 
@@ -38,6 +60,14 @@ const SIDEBAR_BOTTOM_LINKS = [
   { label: "על מאגר הידע", href: "about-kb/index.html" },
   { label: "על יניב", href: "about-yaniv/index.html" },
   { label: "בקרוב", href: "tasks/index.html" },
+];
+
+// קישורים משפטיים שמופיעים בפוטר של כל דף.
+const FOOTER_LEGAL_LINKS = [
+  { label: "הצהרת נגישות", href: "legal/accessibility.html" },
+  { label: "הצהרת פרטיות", href: "legal/privacy.html" },
+  { label: "תנאי שימוש", href: "legal/terms.html" },
+  { label: "מדיניות עוגיות", href: "legal/cookies.html" },
 ];
 
 (function () {
@@ -240,6 +270,73 @@ const SIDEBAR_BOTTOM_LINKS = [
     if (overlay) overlay.addEventListener("click", closeDrawer);
   }
 
+  function renderFooterLegal() {
+    const footer = document.querySelector(".site-footer");
+    if (!footer) return;
+
+    const legalWrap = document.createElement("div");
+    legalWrap.className = "wrap site-footer-legal";
+
+    const ul = document.createElement("ul");
+    FOOTER_LEGAL_LINKS.forEach((item) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = prefix + item.href;
+      a.textContent = item.label;
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    legalWrap.appendChild(ul);
+    footer.appendChild(legalWrap);
+  }
+
+  function renderSitemap() {
+    const root = document.getElementById("sitemap-root");
+    if (!root) return;
+
+    function addSection(title, items) {
+      const section = document.createElement("div");
+      section.className = "sitemap-section";
+
+      const h3 = document.createElement("h3");
+      h3.textContent = title;
+      section.appendChild(h3);
+
+      const ul = document.createElement("ul");
+      ul.className = "sitemap-list";
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = prefix + item.href;
+        a.textContent = item.label;
+        li.appendChild(a);
+
+        if (item.children && item.children.length) {
+          const subUl = document.createElement("ul");
+          item.children.forEach((child) => {
+            const subLi = document.createElement("li");
+            const subA = document.createElement("a");
+            subA.href = prefix + child.href;
+            subA.textContent = child.label;
+            subLi.appendChild(subA);
+            subUl.appendChild(subLi);
+          });
+          li.appendChild(subUl);
+        }
+
+        ul.appendChild(li);
+      });
+      section.appendChild(ul);
+      root.appendChild(section);
+    }
+
+    addSection("ניווט ראשי", NAV_CONFIG);
+    addSection("עמודים נוספים", SIDEBAR_BOTTOM_LINKS);
+    addSection("מידע משפטי", FOOTER_LEGAL_LINKS);
+  }
+
   renderSidebar();
   renderMobileChrome();
+  renderFooterLegal();
+  renderSitemap();
 })();
