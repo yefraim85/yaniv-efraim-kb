@@ -32,7 +32,13 @@ const NAV_CONFIG = [
       { label: "ערכים מובילים", href: "personal-development/values.html" },
     ],
   },
-  { label: "עסקים ועבודה", href: "business-and-work/index.html" },
+  {
+    label: "עסקים ועבודה",
+    href: "business-and-work/index.html",
+    children: [
+      { label: "ניהול מייל בזירו אינבוקס", href: "business-and-work/zero-inbox-email.html" },
+    ],
+  },
   { label: "הורות", href: "parenting/index.html" },
   { label: "תקשורת", href: "communication/index.html" },
   {
