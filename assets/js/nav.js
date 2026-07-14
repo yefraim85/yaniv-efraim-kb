@@ -40,7 +40,14 @@ const NAV_CONFIG = [
     ],
   },
   { label: "הורות", href: "parenting/index.html" },
-  { label: "תקשורת", href: "communication/index.html" },
+  {
+    label: "תקשורת",
+    href: "communication/index.html",
+    children: [
+      { label: "עבודה משותפת בעידן הדיגיטלי", href: "communication/collaborative-work-digital-age.html" },
+      { label: "התכתבות עם מטרה", href: "communication/message-purpose.html" },
+    ],
+  },
   {
     label: "סגנון כתיבה",
     href: "writing-style/index.html",
@@ -58,7 +65,15 @@ const NAV_CONFIG = [
       { label: "תכנון מול ביצוע", href: "finance/planning-vs-execution.html" },
     ],
   },
-  { label: "הנהלת חשבונות", href: "accounting/index.html" },
+  {
+    label: "הנהלת חשבונות",
+    href: "accounting/index.html",
+    children: [
+      { label: "למה בכלל עושים הנהלת חשבונות", href: "accounting/why-bookkeeping-matters.html" },
+      { label: "מילון מונחים", href: "accounting/glossary.html" },
+      { label: "תנועות יומן", href: "accounting/journal-entries.html" },
+    ],
+  },
 ];
 
 // קישורים קטנים שצמודים לתחתית סרגל הצד, מתחת לניווט הראשי.
