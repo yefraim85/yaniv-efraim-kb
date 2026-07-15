@@ -37,6 +37,10 @@ const NAV_CONFIG = [
     href: "business-and-work/index.html",
     children: [
       { label: "ניהול מייל בזירו אינבוקס", href: "business-and-work/zero-inbox-email.html" },
+      { label: "בניית סולם להצלחה", href: "business-and-work/ladder-to-success.html" },
+      { label: "מחזון למשימות", href: "business-and-work/vision-to-tasks.html" },
+      { label: "תעדוף", href: "business-and-work/prioritization.html" },
+      { label: "איטרציה של בדיקה עצמית", href: "business-and-work/self-review-iteration.html" },
     ],
   },
   { label: "הורות", href: "parenting/index.html" },
@@ -46,6 +50,8 @@ const NAV_CONFIG = [
     children: [
       { label: "עבודה משותפת בעידן הדיגיטלי", href: "communication/collaborative-work-digital-age.html" },
       { label: "התכתבות עם מטרה", href: "communication/message-purpose.html" },
+      { label: "תקשורת לא אלימה", href: "communication/nonviolent-communication.html" },
+      { label: "טוהר המילה", href: "communication/purity-of-the-word.html" },
     ],
   },
   {
