@@ -69,6 +69,8 @@ const NAV_CONFIG = [
       { label: "ניהול תקציב", href: "finance/budget-management.html" },
       { label: "ניהול תזרים", href: "finance/cash-flow-management.html" },
       { label: "תכנון מול ביצוע", href: "finance/planning-vs-execution.html" },
+      { label: "תקציב משפחתי וחיסכון ליום גשום", href: "finance/family-budget-and-emergency-fund.html" },
+      { label: "השקעת כספים", href: "finance/investing-money.html" },
     ],
   },
   {
