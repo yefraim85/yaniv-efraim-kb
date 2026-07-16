@@ -39,6 +39,7 @@ const NAV_CONFIG = [
     href: "business-and-work/index.html",
     children: [
       { label: "ניהול מייל בזירו אינבוקס", href: "business-and-work/zero-inbox-email.html" },
+      { label: "התנהלות עם יומן", href: "business-and-work/calendar-management.html" },
       { label: "בניית סולם להצלחה", href: "business-and-work/ladder-to-success.html" },
       { label: "מחזון למשימות", href: "business-and-work/vision-to-tasks.html" },
       { label: "תעדוף", href: "business-and-work/prioritization.html" },
