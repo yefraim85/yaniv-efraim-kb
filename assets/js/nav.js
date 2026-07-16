@@ -31,6 +31,7 @@ const NAV_CONFIG = [
     children: [
       { label: "ערכים מובילים", href: "personal-development/values.html" },
       { label: "בעלות רדיקלית", href: "personal-development/radical-ownership.html" },
+      { label: "בחירה ורצון", href: "personal-development/choice-and-will.html" },
     ],
   },
   {
