@@ -30,6 +30,7 @@ const NAV_CONFIG = [
     href: "personal-development/index.html",
     children: [
       { label: "ערכים מובילים", href: "personal-development/values.html" },
+      { label: "בעלות רדיקלית", href: "personal-development/radical-ownership.html" },
     ],
   },
   {
