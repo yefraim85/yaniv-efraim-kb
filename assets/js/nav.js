@@ -38,7 +38,8 @@ const NAV_CONFIG = [
     label: "עסקים ועבודה",
     href: "business-and-work/index.html",
     children: [
-      { label: "ניהול מייל בזירו אינבוקס", href: "business-and-work/zero-inbox-email.html" },
+      { label: "גאונות", href: "business-and-work/genius.html" },
+      { label: "ניהול מייל ב-Zero Inbox", href: "business-and-work/zero-inbox-email.html" },
       { label: "התנהלות עם יומן", href: "business-and-work/calendar-management.html" },
       { label: "בניית סולם להצלחה", href: "business-and-work/ladder-to-success.html" },
       { label: "מחזון למשימות", href: "business-and-work/vision-to-tasks.html" },
@@ -46,7 +47,15 @@ const NAV_CONFIG = [
       { label: "איטרציה של בדיקה עצמית", href: "business-and-work/self-review-iteration.html" },
     ],
   },
-  { label: "הורות", href: "parenting/index.html" },
+  {
+    label: "הורות",
+    href: "parenting/index.html",
+    children: [
+      { label: "לא לגדל אנשים שאנחנו שונאים", href: "parenting/raising-people-we-like.html" },
+      { label: "להקשיב ללחישות, לפני שהופכות לצעקות", href: "parenting/listening-to-whispers.html" },
+      { label: "איזון רשויות: ההורה כמחוקק, שופט ואוכף", href: "parenting/three-branches-of-parenting.html" },
+    ],
+  },
   {
     label: "תקשורת",
     href: "communication/index.html",
@@ -83,6 +92,24 @@ const NAV_CONFIG = [
       { label: "למה בכלל עושים הנהלת חשבונות", href: "accounting/why-bookkeeping-matters.html" },
       { label: "מילון מונחים", href: "accounting/glossary.html" },
       { label: "תנועות יומן", href: "accounting/journal-entries.html" },
+    ],
+  },
+  {
+    label: "פוליטיקה",
+    href: "politics/index.html",
+    children: [
+      { label: "עימות בין השקפות", href: "politics/conflict-of-visions.html" },
+      { label: "ימין רומנטי", href: "politics/romantic-right.html" },
+      { label: "עקרונות ימין לפי משרד ולפי נושא", href: "politics/principles-by-ministry.html" },
+      { label: "על אמת", href: "politics/on-truth.html" },
+    ],
+  },
+  {
+    label: "סמים",
+    href: "drugs/index.html",
+    children: [
+      { label: "אנחנו נגד סמים", href: "drugs/against-drugs.html" },
+      { label: "הערות מקדימות לשימוש במשני תודעה", href: "drugs/preliminary-notes-consciousness-altering.html" },
     ],
   },
 ];
