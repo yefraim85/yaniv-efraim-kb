@@ -35,16 +35,12 @@ const NAV_CONFIG = [
     ],
   },
   {
-    label: "עסקים ועבודה",
-    href: "business-and-work/index.html",
+    label: "זוגיות",
+    href: "relationships/index.html",
     children: [
-      { label: "גאונות", href: "business-and-work/genius.html" },
-      { label: "ניהול מייל ב-Zero Inbox", href: "business-and-work/zero-inbox-email.html" },
-      { label: "התנהלות עם יומן", href: "business-and-work/calendar-management.html" },
-      { label: "בניית סולם להצלחה", href: "business-and-work/ladder-to-success.html" },
-      { label: "מחזון למשימות", href: "business-and-work/vision-to-tasks.html" },
-      { label: "תעדוף", href: "business-and-work/prioritization.html" },
-      { label: "איטרציה של בדיקה עצמית", href: "business-and-work/self-review-iteration.html" },
+      { label: "מציאת זוגיות", href: "relationships/finding-a-relationship.html" },
+      { label: "ביסוס זוגיות", href: "relationships/establishing-a-relationship.html" },
+      { label: "פריחה בזוגיות", href: "relationships/flourishing-in-a-relationship.html" },
     ],
   },
   {
@@ -54,6 +50,37 @@ const NAV_CONFIG = [
       { label: "לא לגדל אנשים שאנחנו שונאים", href: "parenting/raising-people-we-like.html" },
       { label: "להקשיב ללחישות, לפני שהופכות לצעקות", href: "parenting/listening-to-whispers.html" },
       { label: "איזון רשויות: ההורה כמחוקק, שופט ואוכף", href: "parenting/three-branches-of-parenting.html" },
+    ],
+  },
+  {
+    label: "לעשות כסף",
+    href: "making-money/index.html",
+    children: [
+      { label: "גאונות", href: "making-money/genius.html" },
+      { label: "בניית סולם להצלחה", href: "making-money/ladder-to-success.html" },
+      { label: "מחזון למשימות", href: "making-money/vision-to-tasks.html" },
+      { label: "איטרציה של בדיקה עצמית", href: "making-money/self-review-iteration.html" },
+    ],
+  },
+  {
+    label: "מקצועיות בעבודה",
+    href: "professionalism/index.html",
+    children: [
+      { label: "תעדוף", href: "professionalism/prioritization.html" },
+      { label: "ניהול מייל ב-Zero Inbox", href: "professionalism/zero-inbox-email.html" },
+      { label: "התנהלות עם יומן", href: "professionalism/calendar-management.html" },
+    ],
+  },
+  {
+    label: "פוליטיקה",
+    href: "politics/index.html",
+    children: [
+      { label: "עימות בין השקפות", href: "politics/conflict-of-visions.html" },
+      { label: "ימין רומנטי", href: "politics/romantic-right.html" },
+      { label: "עקרונות ימין לפי משרד ולפי נושא", href: "politics/principles-by-ministry.html" },
+      { label: "על אמת", href: "politics/on-truth.html" },
+      { label: "האם אתה היית שורד?", href: "politics/would-you-survive.html" },
+      { label: "סיאוב", href: "politics/institutional-decay.html" },
     ],
   },
   {
@@ -92,18 +119,6 @@ const NAV_CONFIG = [
       { label: "למה בכלל עושים הנהלת חשבונות", href: "accounting/why-bookkeeping-matters.html" },
       { label: "מילון מונחים", href: "accounting/glossary.html" },
       { label: "תנועות יומן", href: "accounting/journal-entries.html" },
-    ],
-  },
-  {
-    label: "פוליטיקה",
-    href: "politics/index.html",
-    children: [
-      { label: "עימות בין השקפות", href: "politics/conflict-of-visions.html" },
-      { label: "ימין רומנטי", href: "politics/romantic-right.html" },
-      { label: "עקרונות ימין לפי משרד ולפי נושא", href: "politics/principles-by-ministry.html" },
-      { label: "על אמת", href: "politics/on-truth.html" },
-      { label: "האם אתה היית שורד?", href: "politics/would-you-survive.html" },
-      { label: "סיאוב", href: "politics/institutional-decay.html" },
     ],
   },
   {
@@ -190,6 +205,17 @@ const FOOTER_LEGAL_LINKS = [
     }
 
     return li;
+  }
+
+  function renderFavicon() {
+    // מזריקים את הפאביקון כאן כדי שיהיה זהה בכל הדפים, עם נתיב יחסי נכון
+    // לפי עומק הדף (prefix). לא נדרס אם כבר הוגדר פאביקון ידנית בדף.
+    if (document.querySelector('link[rel="icon"]')) return;
+    const link = document.createElement("link");
+    link.rel = "icon";
+    link.type = "image/svg+xml";
+    link.href = prefix + "assets/favicon.svg";
+    document.head.appendChild(link);
   }
 
   function currentTheme() {
@@ -396,6 +422,7 @@ const FOOTER_LEGAL_LINKS = [
     addSection("מידע משפטי", FOOTER_LEGAL_LINKS);
   }
 
+  renderFavicon();
   renderSidebar();
   renderMobileChrome();
   renderFooterLegal();
