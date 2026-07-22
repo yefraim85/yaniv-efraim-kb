@@ -102,6 +102,8 @@ const NAV_CONFIG = [
       { label: "ימין רומנטי", href: "politics/romantic-right.html" },
       { label: "עקרונות ימין לפי משרד ולפי נושא", href: "politics/principles-by-ministry.html" },
       { label: "על אמת", href: "politics/on-truth.html" },
+      { label: "האם אתה היית שורד?", href: "politics/would-you-survive.html" },
+      { label: "סיאוב", href: "politics/institutional-decay.html" },
     ],
   },
   {
