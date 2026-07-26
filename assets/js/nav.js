@@ -21,6 +21,14 @@
    או בלעדיו לקישור עליון שטוח), ואז צרו את הקובץ לפי
    templates/nav-page-template.html (עמוד קטגוריה) או
    templates/article-page-template.html (כתבה).
+
+   חשוב — סימון תוכן מוזרק:
+     כל אלמנט שנוצר כאן בזמן ריצה חייב להיות מסומן, אחרת מצב הסקירה
+     (assets/js/review.js) ישמור אותו לתוך קובץ המקור וייווצרו כפילויות
+     בטעינה הבאה. שתי המוסכמות:
+       data-kb-gen        על אלמנט שנוצר כאן ויוסר כולו בשמירה.
+       data-kb-container  על אלמנט שקיים במקור אך מתמלא כאן, ותוכנו
+                          יימחק בשמירה (למשל #sidebar).
    ========================================================================== */
 
 const NAV_CONFIG = [
@@ -146,6 +154,10 @@ const FOOTER_LEGAL_LINKS = [
   { label: "מדיניות עוגיות", href: "legal/cookies.html" },
 ];
 
+// טקסט הבוילרפלייט של הפוטר — זהה בכל האתר, לכן מוזרק מכאן במקום להישמר
+// בכל קובץ בנפרד. תאריך העדכון של כל דף מגיע מהתכונה data-updated על ה-body.
+const SITE_FOOTER_TEXT = "יניב אפרים — מאגר ידע אישי, לשימוש עצמי, נבנה בעזרת AI.";
+
 (function () {
   const body = document.body;
   const depth = parseInt(body.getAttribute("data-depth") || "0", 10);
@@ -215,6 +227,7 @@ const FOOTER_LEGAL_LINKS = [
     link.rel = "icon";
     link.type = "image/svg+xml";
     link.href = prefix + "assets/favicon.svg";
+    link.setAttribute("data-kb-gen", "");
     document.head.appendChild(link);
   }
 
@@ -258,6 +271,7 @@ const FOOTER_LEGAL_LINKS = [
   function renderSidebar() {
     const sidebar = document.getElementById("sidebar");
     if (!sidebar) return;
+    sidebar.setAttribute("data-kb-container", "");
 
     const brand = document.createElement("a");
     brand.className = "sidebar-brand";
@@ -300,6 +314,7 @@ const FOOTER_LEGAL_LINKS = [
         const crumbs = JSON.parse(crumbsRaw);
         const bc = document.createElement("div");
         bc.className = "breadcrumb";
+        bc.setAttribute("data-kb-gen", "");
         const bcWrap = document.createElement("div");
         bcWrap.className = "wrap";
         const parts = [`<a href="${prefix}index.html">בית</a>`];
@@ -325,6 +340,7 @@ const FOOTER_LEGAL_LINKS = [
     const overlay = document.getElementById("sidebar-overlay");
     const sidebar = document.getElementById("sidebar");
     if (!topbarHost || !sidebar) return;
+    topbarHost.setAttribute("data-kb-container", "");
 
     const brand = document.createElement("a");
     brand.className = "mobile-brand";
@@ -357,9 +373,28 @@ const FOOTER_LEGAL_LINKS = [
     if (overlay) overlay.addEventListener("click", closeDrawer);
   }
 
-  function renderFooterLegal() {
+  function renderSiteFooter() {
     const footer = document.querySelector(".site-footer");
     if (!footer) return;
+    // הפוטר קיים במקור כקונטיינר ריק (<footer class="site-footer"></footer>)
+    // ומתמלא כאן: בוילרפלייט + תאריך העדכון של הדף + קישורים משפטיים.
+    footer.setAttribute("data-kb-container", "");
+    footer.innerHTML = "";
+
+    const wrap = document.createElement("div");
+    wrap.className = "wrap";
+
+    const brand = document.createElement("span");
+    brand.textContent = SITE_FOOTER_TEXT;
+    wrap.appendChild(brand);
+
+    const updated = body.getAttribute("data-updated");
+    if (updated) {
+      const dateSpan = document.createElement("span");
+      dateSpan.textContent = "עודכן לאחרונה: " + updated;
+      wrap.appendChild(dateSpan);
+    }
+    footer.appendChild(wrap);
 
     const legalWrap = document.createElement("div");
     legalWrap.className = "wrap site-footer-legal";
@@ -380,6 +415,7 @@ const FOOTER_LEGAL_LINKS = [
   function renderSitemap() {
     const root = document.getElementById("sitemap-root");
     if (!root) return;
+    root.setAttribute("data-kb-container", "");
 
     function addSection(title, items) {
       const section = document.createElement("div");
@@ -422,9 +458,36 @@ const FOOTER_LEGAL_LINKS = [
     addSection("מידע משפטי", FOOTER_LEGAL_LINKS);
   }
 
+  // מצב הסקירה הוא כלי עבודה מקומי בלבד. באתר החי אסור שהוא ייטען כלל —
+  // לא הכפתור, לא הסקריפט, ולא בקשת רשת אחת. לכן מגבילים אותו ל-localhost
+  // (וגם לפתיחת הקובץ ישירות מהדיסק, שבה hostname ריק).
+  function isLocalEnvironment() {
+    var h = location.hostname;
+    return (
+      h === "localhost" ||
+      h === "127.0.0.1" ||
+      h === "::1" ||
+      h === "[::1]" ||
+      h === "" ||
+      /\.local$/.test(h)
+    );
+  }
+
+  function loadReviewMode() {
+    if (!isLocalEnvironment()) return;
+    // מצב הסקירה (סרגל עריכה חי) נטען פעם אחת בכל דף, עם נתיב יחסי נכון.
+    if (window.__kbReviewLoaded || document.getElementById("kb-review-script")) return;
+    var s = document.createElement("script");
+    s.id = "kb-review-script";
+    s.src = prefix + "assets/js/review.js";
+    s.setAttribute("data-kb-gen", "");
+    document.body.appendChild(s);
+  }
+
   renderFavicon();
   renderSidebar();
   renderMobileChrome();
-  renderFooterLegal();
+  renderSiteFooter();
   renderSitemap();
+  loadReviewMode();
 })();

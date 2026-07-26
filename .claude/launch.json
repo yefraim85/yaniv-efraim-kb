@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "kb-static-site",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["--yes", "serve", "."],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["tools/dev-server.js"],
       "port": 5173,
       "autoPort": true
     }

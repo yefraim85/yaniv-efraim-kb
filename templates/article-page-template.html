@@ -10,7 +10,8 @@
       הנושא (אותיות קטנות, מקפים — למשל "on-parenting.html").
    2. החליפו כל placeholder בסוגריים מרובעים.
    3. כתבו את תוכן הכתבה עם התגיות הקיימות (h2/h3/p/ul/blockquote/.callout).
-   4. עדכנו data-page ו-data-crumbs ב-<body> כך שיתאימו לנתיב האמיתי.
+   4. עדכנו את התכונות על ה-body: data-updated (תאריך העדכון, מוצג בפוטר),
+      data-page ו-data-crumbs, כך שיתאימו לנתיב ולתאריך האמיתיים.
    5. הוסיפו את הכתבה לכרטיסי הרכזת (index.html) של הקטגוריה, ולמערך
       "children" המתאים ב-NAV_CONFIG בקובץ assets/js/nav.js.
 -->
@@ -27,6 +28,7 @@
 </head>
 <body
   data-depth="1"
+  data-updated="[DD בחודש YYYY]"
   data-page="[תיקיית-קטגוריה]/[שם-קובץ-כתבה].html"
   data-crumbs='[{"label":"[שם הקטגוריה]","href":"[תיקיית-קטגוריה]/index.html"},{"label":"[כותרת הכתבה]"}]'
 >
@@ -85,12 +87,7 @@
         </div>
       </footer>
 
-      <footer class="site-footer">
-        <div class="wrap">
-          <span>יניב אפרים — מאגר ידע אישי, לשימוש עצמי, נבנה בעזרת AI.</span>
-          <span>עודכן לאחרונה: [DD בחודש YYYY]</span>
-        </div>
-      </footer>
+      <footer class="site-footer"></footer>
 
     </div>
   </div>

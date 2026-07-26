@@ -9,7 +9,8 @@
    1. העתיקו קובץ זה לתיקיית הקטגוריה בשם index.html.
    2. החליפו כל placeholder בסוגריים מרובעים.
    3. הוסיפו כרטיס <a class="card"> אחד לכל כתבה-בת (מסומן למטה).
-   4. עדכנו data-page ו-data-crumbs ב-<body> כך שיתאימו לנתיב האמיתי.
+   4. עדכנו את התכונות על ה-body: data-updated (תאריך העדכון, מוצג בפוטר),
+      data-page ו-data-crumbs, כך שיתאימו לנתיב ולתאריך האמיתיים.
    5. הוסיפו רשומה מתאימה (עם "children") ל-NAV_CONFIG בקובץ
       assets/js/nav.js כדי שהקטגוריה והכתבות שלה יופיעו בתפריט הצד.
 -->
@@ -27,6 +28,7 @@
 </head>
 <body
   data-depth="1"
+  data-updated="[DD בחודש YYYY]"
   data-page="[תיקיית-קטגוריה]/index.html"
   data-crumbs='[{"label":"[שם הקטגוריה]"}]'
 >
@@ -69,12 +71,7 @@
         </div>
       </section>
 
-      <footer class="site-footer">
-        <div class="wrap">
-          <span>יניב אפרים — מאגר ידע אישי, לשימוש עצמי, נבנה בעזרת AI.</span>
-          <span>עודכן לאחרונה: [DD בחודש YYYY]</span>
-        </div>
-      </footer>
+      <footer class="site-footer"></footer>
 
     </div>
   </div>
