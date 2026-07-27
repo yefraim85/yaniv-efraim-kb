@@ -115,6 +115,22 @@ function findFile(abs) {
   return null;
 }
 
+// מגיש את עמוד ה-404 המותאם, בדיוק כמו ש-GitHub Pages עושה בייצור.
+function serveNotFound(res) {
+  const custom = path.join(ROOT, "404.html");
+  fs.readFile(custom, function (err, buf) {
+    if (err) {
+      res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+      return res.end("<h1>404</h1>");
+    }
+    res.writeHead(404, {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-cache"
+    });
+    res.end(buf);
+  });
+}
+
 /* ---------- הגשת קבצים סטטיים ---------- */
 function serveStatic(req, res) {
   let urlPath = req.url.split("?")[0];
@@ -127,16 +143,10 @@ function serveStatic(req, res) {
   }
 
   const file = findFile(abs);
-  if (!file) {
-    res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-    return res.end("<h1>404</h1><p>" + urlPath + " לא נמצא</p>");
-  }
+  if (!file) return serveNotFound(res);
 
   fs.readFile(file, function (readErr, buf) {
-    if (readErr) {
-      res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-      return res.end("<h1>404</h1><p>" + urlPath + " לא נמצא</p>");
-    }
+    if (readErr) return serveNotFound(res);
     const ext = path.extname(file).toLowerCase();
     res.writeHead(200, {
       "Content-Type": MIME[ext] || "application/octet-stream",

@@ -48,7 +48,7 @@
   // אזורים שבהם לחיצה מוסיפה הערה / מסמנת כמיותר.
   var PICK_ZONE_SELECTOR = ".article-body, .hero, .card";
 
-  var state = { mode: null }; // null | "edit" | "comment" | "redundant"
+  var state = { mode: null, dirty: false }; // dirty = יש שינויים שלא נשמרו
   var rootDir = null; // FileSystemDirectoryHandle לתיקיית שורש האתר
 
   /* ---------- עיצוב (מוזרק פעם אחת, קיים בכל טעינה של הדף) ---------- */
@@ -108,6 +108,7 @@
       ".kb-btn-comment{background:#d98a2b;}",
       ".kb-btn-redundant{background:#c8483f;}",
       ".kb-btn-save{background:#3d6fd6;}",
+      ".kb-btn-cancel{background:#5b636f;}",
       ".kb-btn-close{background:transparent;color:#9aa4b2;padding:9px 10px;font-size:1.1rem;}",
       ".kb-hint{margin-top:10px;font-size:.8rem;color:#aeb6c2;text-align:center;line-height:1.5;}",
       ".kb-hint.hidden{display:none;}",
@@ -198,6 +199,11 @@
     btnSave.type = "button";
     btnSave.addEventListener("click", save);
 
+    var btnCancel = el("button", "kb-btn kb-btn-cancel", "↩︎ בטל שינויים");
+    btnCancel.type = "button";
+    btnCancel.title = "שחזור הדף למצב השמור האחרון, בלי לשמור את השינויים";
+    btnCancel.addEventListener("click", cancelChanges);
+
     var btnClose = el("button", "kb-btn kb-btn-close", "✕");
     btnClose.type = "button";
     btnClose.title = "סגור סרגל";
@@ -207,6 +213,7 @@
     row.appendChild(btnComment);
     row.appendChild(btnRedundant);
     row.appendChild(btnSave);
+    row.appendChild(btnCancel);
     row.appendChild(btnClose);
     toolbar.appendChild(row);
 
@@ -227,6 +234,32 @@
     setMode(null);
     toolbar.classList.add("hidden");
     launcher.classList.remove("hidden");
+  }
+
+  /* ---------- מעקב אחרי שינויים לא-שמורים + ביטול ---------- */
+  function markDirty() {
+    state.dirty = true;
+  }
+  // הקלדה בכל אלמנט שניתן לעריכה (טקסט או גוף הערה) מסמנת "יש שינויים".
+  document.addEventListener("input", function (e) {
+    if (e.target && e.target.closest && e.target.closest('[contenteditable="true"]')) {
+      markDirty();
+    }
+  });
+
+  function cancelChanges() {
+    if (!state.dirty) {
+      toast("אין שינויים לבטל");
+      return;
+    }
+    var ok = window.confirm(
+      "לבטל את כל השינויים שלא נשמרו? הדף ישוחזר למצב השמור האחרון."
+    );
+    if (!ok) return;
+    // כל השינויים חיים רק ב-DOM עד לשמירה, לכן טעינה מחדש משחזרת את
+    // הדף בדיוק לגרסה שעל הדיסק.
+    state.dirty = false;
+    location.reload();
   }
 
   /* ---------- ניהול מצבים ---------- */
@@ -333,6 +366,7 @@
     del.addEventListener("click", function () {
       note.remove();
       renumberNotes();
+      markDirty();
     });
     head.appendChild(label);
     head.appendChild(del);
@@ -350,6 +384,7 @@
     var note = makeNoteEl("");
     block.insertAdjacentElement("afterend", note);
     renumberNotes();
+    markDirty();
     var body = note.querySelector(".kb-note-body");
     body.focus();
   }
@@ -369,7 +404,7 @@
       var del = el("button", "kb-note-del kb-review-ui", "✕");
       del.type = "button";
       del.title = "מחק הערה";
-      del.addEventListener("click", function () { note.remove(); renumberNotes(); });
+      del.addEventListener("click", function () { note.remove(); renumberNotes(); markDirty(); });
       head.appendChild(del);
       body.setAttribute("contenteditable", "true");
     });
@@ -379,6 +414,7 @@
   /* ---------- סימון מיותר ---------- */
   function toggleRedundant(block) {
     block.classList.toggle("kb-redundant");
+    markDirty();
   }
 
   /* ---------- שמירה ---------- */
@@ -516,6 +552,7 @@
           body: JSON.stringify({ path: relPath, html: html })
         });
         if (res.ok) {
+          state.dirty = false;
           toast("נשמר ✓ " + relPath);
           return;
         }
@@ -538,6 +575,7 @@
         if (dir) {
           if (firstTime) toast("מחבר את תיקיית האתר…");
           await writeToDir(dir, relPath, html);
+          state.dirty = false;
           toast("נשמר ✓ " + relPath);
           return;
         }
@@ -563,6 +601,7 @@
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
+    state.dirty = false;
     toast("הקובץ ירד — החלף בו את הקובץ המקורי");
   }
 

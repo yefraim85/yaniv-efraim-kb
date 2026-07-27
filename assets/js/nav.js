@@ -77,6 +77,7 @@ const NAV_CONFIG = [
       { label: "תעדוף", href: "professionalism/prioritization.html" },
       { label: "ניהול מייל ב-Zero Inbox", href: "professionalism/zero-inbox-email.html" },
       { label: "התנהלות עם יומן", href: "professionalism/calendar-management.html" },
+      { label: "איך אני בונה ומתחזק אתר", href: "professionalism/building-websites.html" },
     ],
   },
   {
