@@ -114,6 +114,8 @@ const NAV_CONFIG = [
     label: "כספים",
     href: "finance/index.html",
     children: [
+      { label: "ניהול כספים בארגון", href: "finance/company-financial-management.html" },
+      { label: "המשפחה כחברה", href: "finance/family-as-a-company.html" },
       { label: "ניהול תקציב", href: "finance/budget-management.html" },
       { label: "ניהול תזרים", href: "finance/cash-flow-management.html" },
       { label: "תכנון מול ביצוע", href: "finance/planning-vs-execution.html" },
