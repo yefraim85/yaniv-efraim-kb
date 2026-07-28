@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yefraim85.github.io/yaniv-efraim-kb/sitemap.xml
