@@ -78,6 +78,16 @@ const NAV_CONFIG = [
       { label: "ניהול מייל ב-Zero Inbox", href: "professionalism/zero-inbox-email.html" },
       { label: "התנהלות עם יומן", href: "professionalism/calendar-management.html" },
       { label: "איך אני בונה ומתחזק אתר", href: "professionalism/building-websites.html" },
+      { label: "תיעוד תהליכים (SOP)", href: "professionalism/process-documentation.html" },
+      { label: "ניהול משימות", href: "professionalism/task-management.html" },
+    ],
+  },
+  {
+    label: "כלים",
+    href: "digital-tools/index.html",
+    children: [
+      { label: "עבודה עם ShareX", href: "digital-tools/sharex.html" },
+      { label: "עבודה עם Loom", href: "digital-tools/loom.html" },
     ],
   },
   {
