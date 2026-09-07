@@ -40,6 +40,7 @@ const NAV_CONFIG = [
       { label: "ערכים מובילים", href: "personal-development/values.html" },
       { label: "בעלות רדיקלית", href: "personal-development/radical-ownership.html" },
       { label: "בחירה ורצון", href: "personal-development/choice-and-will.html" },
+      { label: "מעגלי ייחוס", href: "personal-development/circles-of-belonging.html" },
     ],
   },
   {
@@ -80,14 +81,19 @@ const NAV_CONFIG = [
       { label: "איך אני בונה ומתחזק אתר", href: "professionalism/building-websites.html" },
       { label: "תיעוד תהליכים (SOP)", href: "professionalism/process-documentation.html" },
       { label: "ניהול משימות", href: "professionalism/task-management.html" },
+      { label: "מהירות", href: "professionalism/speed.html" },
     ],
   },
   {
     label: "כלים",
     href: "digital-tools/index.html",
     children: [
+      { label: "עבודה עם Windows", href: "digital-tools/windows.html" },
+      { label: "עבודה עם Google Meet", href: "digital-tools/google-meet.html" },
+      { label: "לצמצם רעש דיגיטלי", href: "digital-tools/reducing-digital-noise.html" },
       { label: "עבודה עם ShareX", href: "digital-tools/sharex.html" },
       { label: "עבודה עם Loom", href: "digital-tools/loom.html" },
+      { label: "עבודה עם Beeper", href: "digital-tools/beeper.html" },
     ],
   },
   {
