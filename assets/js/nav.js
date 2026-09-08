@@ -100,6 +100,7 @@ const NAV_CONFIG = [
     label: "פוליטיקה",
     href: "politics/index.html",
     children: [
+      { label: "אני מאמין", href: "politics/i-believe.html" },
       { label: "עימות בין השקפות", href: "politics/conflict-of-visions.html" },
       { label: "ימין רומנטי", href: "politics/romantic-right.html" },
       { label: "עקרונות ימין לפי משרד ולפי נושא", href: "politics/principles-by-ministry.html" },
