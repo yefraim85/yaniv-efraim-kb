@@ -82,6 +82,7 @@ const NAV_CONFIG = [
       { label: "תיעוד תהליכים (SOP)", href: "professionalism/process-documentation.html" },
       { label: "ניהול משימות", href: "professionalism/task-management.html" },
       { label: "מהירות", href: "professionalism/speed.html" },
+      { label: "קבלת החלטות", href: "professionalism/decision-making.html" },
     ],
   },
   {
