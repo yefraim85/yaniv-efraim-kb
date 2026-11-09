@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <script>(function(){try{if(localStorage.getItem("kb-theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>עבודה עם Notion Calendar — יניב אפרים</title>
+  <meta name="description" content="איך חוסמים זמן בין יומן עבודה ליומן אישי ב-Notion Calendar, בלי ליצור כפילויות מעצבנות — חינמי, ודו-כיווני אם מגדירים את זה פעמיים." />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="יניב אפרים — מאגר ידע אישי" />
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:url" content="https://yefraim85.github.io/yaniv-efraim-kb/digital-tools/notion-calendar.html" />
+  <meta property="og:title" content="עבודה עם Notion Calendar — יניב אפרים" />
+  <meta property="og:description" content="איך חוסמים זמן בין יומן עבודה ליומן אישי ב-Notion Calendar, בלי ליצור כפילויות מעצבנות — חינמי, ודו-כיווני אם מגדירים את זה פעמיים." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="עבודה עם Notion Calendar — יניב אפרים" />
+  <meta name="twitter:description" content="איך חוסמים זמן בין יומן עבודה ליומן אישי ב-Notion Calendar, בלי ליצור כפילויות מעצבנות — חינמי, ודו-כיווני אם מגדירים את זה פעמיים." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;600;700&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body data-updated="9 בנובמבר 2026"
+  data-depth="1"
+  data-page="digital-tools/notion-calendar.html"
+  data-crumbs='[{"label":"כלים","href":"digital-tools/index.html"},{"label":"עבודה עם Notion Calendar"}]'
+>
+
+  <div id="mobile-topbar" class="mobile-topbar"></div>
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <div class="app-main">
+
+      <header class="article-header">
+        <div class="wrap">
+          <p class="eyebrow">כלים</p>
+          <h1>עבודה עם Notion Calendar</h1>
+          <div class="article-meta">
+            <span>עודכן לאחרונה 9 בנובמבר 2026</span>
+            <div class="tag-list">
+              <span class="tag">מדריך כלי</span>
+              <span class="tag">Notion Calendar</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <article class="article-body">
+
+        <p>
+          הבעיה: יומן עבודה ויומן אישי, שניהם צריכים לדעת מתי אני תפוס
+          באמת, בלי שאני אצטרך לעדכן את שניהם ידנית בכל פעם. Notion
+          Calendar (חינמי, מסתנכרן עם Google Calendar, Outlook ו-iCloud)
+          פותר את זה עם תכונה שנקראת Blocking — ובניגוד לכלי סנכרון
+          פשוטים שמעתיקים את כל האירוע ליומן השני, Blocking יוצר רק
+          "בלוק תפוס" קליל. בלי כותרת, בלי פרטים (אלא אם בוחרים אחרת),
+          ובלי התחושה שיש לכם פתאום שני יומנים כפולים שצריך להשוות ביניהם.
+        </p>
+
+        <h2>איך מגדירים חסימה אוטומטית</h2>
+        <ol>
+          <li>בסיידבר של Notion Calendar, לוחצים על היומן שממנו רוצים
+            לחסום — למשל היומן האישי.</li>
+          <li>בפאנל שנפתח, לוחצים על התפריט הנפתח <strong>Event blocking
+            on calendar</strong>.</li>
+          <li>בוחרים את היומן היעד שעליו ייחסמו האירועים — למשל יומן
+            העבודה.</li>
+          <li>בוחרים רמת פירוט: <strong>Include details</strong> (האירוע
+            המקורי מוצג עם כל הפרטים) או <strong>Show as busy</strong>
+            (רק "תפוס", בלי לחשוף מה קורה ביומן השני). הבחירה הזו חלה גם
+            על כל חסימה עתידית, לא רק על הרגע הזה.</li>
+        </ol>
+        <p>
+          מרגע זה, כל אירוע חדש ביומן המקור יוצר אוטומטית בלוק "תפוס"
+          ביומן היעד — בלי שום פעולה נוספת.
+        </p>
+
+        <div class="callout">
+          <strong>זה חד-כיווני, אלא אם מגדירים את זה פעמיים:</strong>
+          החסימה שהגדרתם חוסמת רק בכיוון אחד — מהיומן שבחרתם בשלב 1
+          אל היומן שבחרתם בשלב 3. כדי שהחסימה תהיה הדדית, כך ששני
+          היומנים באמת חסומים בזמנים המקבילים, צריך לחזור על כל התהליך
+          גם בכיוון ההפוך: יומן עבודה → יומן אישי.
+        </div>
+
+        <h2>חסימה של אירוע בודד, לא קבוע</h2>
+        <p>
+          אפשר גם בלי להגדיר חסימה אוטומטית: קליק ימני על אירוע ספציפי,
+          <strong>Block on calendar</strong>, בוחרים יומן יעד, ואז
+          <strong>This event</strong> לחסימה חד-פעמית בלבד, או
+          <strong>All events</strong> כדי להפוך את זה לאותה חסימה
+          אוטומטית ומתמשכת שתוארה למעלה — רק שמתחילים אותה מתוך אירוע
+          קיים במקום מהסיידבר.
+        </p>
+
+        <h2>סימן המנעול</h2>
+        <p>
+          ליד כל בלוק אפשר לראות מנעול קטן: מנעול פתוח אומר שפרטי האירוע
+          המקורי משותפים (Include details), ומנעול סגור אומר שהם מוסתרים
+          — רואים רק שהזמן תפוס (Show as busy). דרך מהירה לוודא במבט
+          אחד מה בדיוק חשוף ליומן השני, בלי לפתוח כל בלוק בנפרד.
+        </p>
+
+        <div class="callout">
+          <strong>לתשומת לב:</strong> אם היומן הארגוני מוגבל על ידי מדיניות
+          אבטחה של החברה (Google Workspace עם הרשאות מצומצמות, למשל),
+          ייתכן שהחסימה מהיומן האישי לא תצליח להיכתב על יומן העבודה. אם
+          הבלוקים לא מופיעים, שווה לבדוק את זה מול IT לפני שמחפשים את
+          התקלה בהגדרות של Notion Calendar עצמו.
+        </div>
+
+        <h2>איך מבטלים</h2>
+        <p>
+          לביטול בלוק בודד — פותחים אותו ומבטלים משם, בדיוק כמו שיצרו
+          אותו. לכיבוי החסימה האוטומטית כולה — חוזרים לתפריט
+          <strong>Event blocking on calendar</strong> ומכבים אותו; זה
+          מבטל (Unblock) את כל הבלוקים שנוצרו דרכו בבת אחת, לא רק מונע
+          בלוקים עתידיים.
+        </p>
+
+        <p>
+          זה אותו רעיון שכתבתי עליו
+          ב-<a href="../professionalism/calendar-management.html">התנהלות
+          עם יומן</a> — יומן טוב הוא לא רק מה ששמים בו, אלא גם מה שהוא
+          חושף למי שמסתכל עליו מבחוץ. חסימה בלי פרטים נותנת בדיוק את מה
+          שהצד השני צריך (לדעת שאני תפוס), ולא יותר מזה.
+        </p>
+
+        <blockquote>
+          היומן השני לא צריך לדעת מה קורה אצלי — מספיק שהוא ידע שאני
+          תפוס.
+        </blockquote>
+
+      </article>
+
+      <footer class="article-footer">
+        <div class="wrap">
+          <p class="related-title">קשור</p>
+          <ul class="list-links">
+            <li><a href="../professionalism/calendar-management.html">התנהלות עם יומן <span class="meta">מערכות אישיות</span></a></li>
+            <li><a href="sharedcontacts.html">עבודה עם SharedContacts <span class="meta">מדריך כלי</span></a></li>
+          </ul>
+        </div>
+      </footer>
+
+      <footer class="site-footer"></footer>
+
+    </div>
+  </div>
+
+  <script src="../assets/js/nav.js"></script>
+</body>
+</html>

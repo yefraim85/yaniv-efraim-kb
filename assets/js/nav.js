@@ -96,6 +96,7 @@ const NAV_CONFIG = [
       { label: "עבודה עם Loom", href: "digital-tools/loom.html" },
       { label: "עבודה עם Beeper", href: "digital-tools/beeper.html" },
       { label: "עבודה עם SharedContacts", href: "digital-tools/sharedcontacts.html" },
+      { label: "עבודה עם Notion Calendar", href: "digital-tools/notion-calendar.html" },
     ],
   },
   {
